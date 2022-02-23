@@ -1,15 +1,26 @@
 package com.cabidiomas.cadastro.user.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.cabidiomas.cadastro.user.model.User;
+import com.cabidiomas.cadastro.user.model.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
 
+    @Autowired
+    private UserRepository userRepository;
+
     @GetMapping
     public String helloWorld(){
         return "Hello world!";
+    }
+
+    @PostMapping
+    public User salvar(@RequestBody @Valid User user) {
+        return userRepository.save(user);
     }
 }
