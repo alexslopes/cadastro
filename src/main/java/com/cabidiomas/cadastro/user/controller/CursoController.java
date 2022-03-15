@@ -14,6 +14,7 @@ import org.springframework.web.server.ResponseStatusException;
 import javax.validation.Valid;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -36,8 +37,14 @@ public class CursoController {
                         .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Cliente inexistente"));
 
         Curso curso = new Curso();
-        curso.setDescricao(dto.getDescricao());
+        curso.setNome(dto.getDescricao());
 
         return cursoRepository.save(curso);
+    }
+
+    @GetMapping//required = false: Nao obriga passar o parametro nome na requisição
+    public List<Curso> pesquisar(@RequestParam(value = "nome")String nome)
+    {
+        return cursoRepository.findByNome("%" + nome + "%");
     }
 }

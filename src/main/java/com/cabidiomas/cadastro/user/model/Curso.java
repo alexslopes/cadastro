@@ -16,7 +16,7 @@ public class Curso {
     private Integer Id;
 
     @Column(nullable = false, length = 150)
-    private String descricao;
+    private String nome;
 
     @ManyToMany
     @JoinTable(
