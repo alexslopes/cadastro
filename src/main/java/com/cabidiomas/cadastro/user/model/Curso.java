@@ -13,7 +13,7 @@ public class Curso {
 
     @javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer Id;
+    private Integer id;
 
     @Column(nullable = false, length = 150)
     private String nome;

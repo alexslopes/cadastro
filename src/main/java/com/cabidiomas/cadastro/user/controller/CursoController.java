@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/cursos ")
+@RequestMapping("/api/cursos")
 @RequiredArgsConstructor
 public class CursoController {
 
@@ -29,15 +29,9 @@ public class CursoController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Curso salvar(@RequestBody @Valid CursoDto dto) {
-        Integer idAluno = dto.getIdAluno();
-
-        Aluno aluno =
-                alunoRepository
-                        .findById(idAluno)
-                        .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Cliente inexistente"));
 
         Curso curso = new Curso();
-        curso.setNome(dto.getDescricao());
+        curso.setNome(dto.getNome());
 
         return cursoRepository.save(curso);
     }
