@@ -7,8 +7,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;;
+import javax.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 
@@ -24,8 +25,10 @@ public class User {
     private Integer id;
 
     @Column(unique = true, name = "login")
+    @NotBlank
     private String username;
 
-    @Column(unique = true, name = "senha")
+    @Column(name = "senha")
+    @NotBlank
     private String password;
 }
