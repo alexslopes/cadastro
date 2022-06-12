@@ -1,6 +1,6 @@
 package com.cabidiomas.cadastro.config;
 
-import com.cabidiomas.cadastro.service.UsuarioService;
+import com.cabidiomas.cadastro.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,7 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private UsuarioService usuarioService;
+    private UserService usuarioService;
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {

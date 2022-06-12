@@ -1,5 +1,6 @@
 package com.cabidiomas.cadastro.service;
 
+import com.cabidiomas.cadastro.exception.UsuariocadastradoException;
 import com.cabidiomas.cadastro.user.model.User;
 import com.cabidiomas.cadastro.user.model.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +10,18 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UsuarioService implements UserDetailsService {
+public class UserService implements UserDetailsService {
 
     @Autowired
     public UserRepository repository;
+
+    public User salvar(User user){
+        boolean exists = repository.existsByUsername(user.getUsername());
+        if(exists){
+            throw new UsuariocadastradoException(user.getUsername());
+        }
+        return repository.save(user);
+    }
 
 
     @Override

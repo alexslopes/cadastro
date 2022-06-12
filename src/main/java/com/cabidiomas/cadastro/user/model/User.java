@@ -25,10 +25,10 @@ public class User {
     private Integer id;
 
     @Column(unique = true, name = "login")
-    @NotBlank
+    @NotBlank(message = "{campo.login.obrigatorio}")
     private String username;
 
     @Column(name = "senha")
-    @NotBlank
+    @NotBlank(message = "{campo.senha.obrigatorio}")
     private String password;
 }
